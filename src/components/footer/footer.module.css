@@ -1,0 +1,13 @@
+.footer > h1 {
+  padding: 0.5rem;
+  background-color: #000;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 320;
+  text-align: center;
+  margin-top: 1rem;
+}
+.footer span a {
+  text-decoration: none;
+  color: rgb(220, 147, 30);
+}

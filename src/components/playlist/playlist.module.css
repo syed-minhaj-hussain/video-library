@@ -1,0 +1,57 @@
+.container {
+  max-width: 1100px;
+  margin: 1rem auto;
+}
+.listBtn {
+  border: 0.1rem solid #333;
+  background-color: #fff;
+  padding: 0.2rem 0.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-right: 1rem;
+}
+
+.list {
+  background-color: #333;
+  color: #fff;
+  padding: 0.8rem;
+  font-size: 1rem;
+  font-weight: 300;
+  width: 300px;
+  height: auto;
+  border-radius: 0.5rem;
+  position: relative;
+  box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+.del {
+  position: absolute;
+  top: 0;
+  right: 0;
+  color: #fff;
+  font-size: 2rem;
+  transition: 0.2s;
+}
+.del:hover {
+  color: red;
+  transform: rotate(360deg);
+}
+.input {
+  width: 80%;
+  padding: 0.2rem;
+  background-color: #555;
+  color: #fff;
+  margin: 0.1rem;
+  border: 0.1rem solid black;
+}
+.submit {
+  width: 10px;
+  border: 0.1rem solid #fff;
+  margin: 0.2rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.submit:hover {
+  border: 0.1rem solid #fff;
+  color: #fff;
+  background-color: #000;
+}
