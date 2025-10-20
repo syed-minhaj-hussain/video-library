@@ -1,0 +1,17 @@
+@import url("https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Quicksand", sans-serif;
+}
+.App {
+  height: 100vh;
+  background-color: rgb(24, 24, 24);
+  position: relative;
+  overflow-y: auto;
+}
+h1 {
+  margin-block-start: 0px;
+  margin-block-end: 0px;
+}
