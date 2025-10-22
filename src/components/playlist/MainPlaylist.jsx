@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useVideosContext } from "../../context/VideosContext";
 import mainStyle from "./playlist.module.css";
 import { PlaylistNames } from "./PlaylistNames";

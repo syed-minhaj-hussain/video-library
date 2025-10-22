@@ -69,15 +69,23 @@ body {
   width: 30px;
   height: 25px;
   background-color: inherit;
-  border: none;
+  border: 1px solid rgb(220, 152, 20);
+  padding: 0.25rem;
 }
 
 .toggleButton .bar {
   height: 3px;
   width: 100%;
-  background-color: white;
+  background-color: rgb(220, 152, 20);
   border-radius: 10px;
   padding: 0.1rem;
+}
+
+.activeLink {
+  font-weight: bold;
+  color: #333;
+  background-color: rgb(220, 152, 20);
+  height: 100%;
 }
 @media (max-width: 800px) {
   .navbar {

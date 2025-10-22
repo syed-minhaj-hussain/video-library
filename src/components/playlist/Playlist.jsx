@@ -1,17 +1,28 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { useVideosContext } from "../../context/VideosContext";
 import playStyle from "./playlist.module.css";
 import { v4 as uuidv4 } from "uuid";
 import { TiDelete } from "react-icons/ti";
 
-export const Playlist = ({ video, id, setShow }) => {
+export const Playlist = ({ video, id, setShow, name }) => {
   const [text, setText] = useState("");
   const {
-    state: { playlist },
+    state: { playlist, videos },
     dispatch,
   } = useVideosContext();
 
-  // console.log({ playlist });
+  console.log({ video, id, setShow, name, videos });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (text !== "") {
+      dispatch({
+        type: "CREATE-NEW-PLAYLIST",
+        payload: { id: uuidv4(), name: text, videos: [] },
+      });
+    }
+    setText("");
+  };
 
   return (
     <div className={playStyle.list}>
@@ -19,19 +30,7 @@ export const Playlist = ({ video, id, setShow }) => {
         className={playStyle.del}
         onClick={() => setShow((prev) => !prev)}
       />
-      <form
-        onSubmit={(e) => {
-          e.preventDefault();
-          // setValue(text);
-          if (text !== "") {
-            dispatch({
-              type: "CREATE-NEW-PLAYLIST",
-              payload: { id: uuidv4(), name: text, videos: [] },
-            });
-          }
-          setText("");
-        }}
-      >
+      <form onSubmit={handleSubmit}>
         <label htmlFor="playlist">
           Enter Playlist Name : <br />
           <input
@@ -64,7 +63,6 @@ export const Playlist = ({ video, id, setShow }) => {
                   type: "GET-LIST-BY-ID",
                   payload: { list, video },
                 });
-                // console.log({ list });
               }}
               disabled={
                 list.videos.find((vid) => vid._id === id) ? true : false

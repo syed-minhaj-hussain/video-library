@@ -12,6 +12,11 @@ export const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
   const { auth, logout } = useAuthContext();
 
+  const linkStyle = ({ isActive }) =>
+    isActive
+      ? `${navStyle.activeLink} ${navStyle.navLinks}`
+      : navStyle.navLinks;
+
   return (
     <nav className={navStyle.navbar}>
       <div className={navStyle.brandTitle}>
@@ -45,13 +50,7 @@ export const Navbar = () => {
           <li>
             <NavLink
               to="/"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "#333",
-                backgroundColor: "rgb(220,152,20)",
-                height: "100%",
-              }}
-              className={navStyle.navLinks}
+              className={linkStyle}
               end
               onClick={() => setIsActive((prev) => !prev)}
             >
@@ -61,13 +60,7 @@ export const Navbar = () => {
           <li>
             <NavLink
               to="/likedVideos"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "#333",
-                backgroundColor: "rgb(220,152,20)",
-                height: "100%",
-              }}
-              className={navStyle.navLinks}
+              className={linkStyle}
               onClick={() => setIsActive((prev) => !prev)}
             >
               <AiFillLike style={{ fontSize: "1.25rem" }} />
@@ -76,13 +69,7 @@ export const Navbar = () => {
           <li>
             <NavLink
               to="/history"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "#333",
-                backgroundColor: "rgb(220,152,20)",
-                height: "100%",
-              }}
-              className={navStyle.navLinks}
+              className={linkStyle}
               style={{ position: "relative" }}
               onClick={() => setIsActive((prev) => !prev)}
             >
@@ -92,13 +79,7 @@ export const Navbar = () => {
           <li>
             <NavLink
               to="/watchLater"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "#333",
-                backgroundColor: "rgb(220,152,20)",
-                height: "100%",
-              }}
-              className={navStyle.navLinks}
+              className={linkStyle}
               style={{ position: "relative" }}
               onClick={() => setIsActive((prev) => !prev)}
             >
@@ -108,13 +89,7 @@ export const Navbar = () => {
           <li>
             <NavLink
               to="/playlist"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "#333",
-                backgroundColor: "rgb(220,152,20)",
-                height: "100%",
-              }}
-              className={navStyle.navLinks}
+              className={linkStyle}
               style={{ position: "relative" }}
               onClick={() => setIsActive((prev) => !prev)}
             >
@@ -135,13 +110,7 @@ export const Navbar = () => {
             ) : (
               <NavLink
                 to="/login"
-                activeStyle={{
-                  fontWeight: "bold",
-                  color: "#333",
-                  backgroundColor: "rgb(220,152,20)",
-                  height: "100%",
-                }}
-                className={navStyle.navLinks}
+                className={linkStyle}
                 onClick={() => setIsActive((prev) => !prev)}
               >
                 Login

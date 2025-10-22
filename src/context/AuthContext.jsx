@@ -2,33 +2,32 @@ import { createContext, useContext, useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useToastContext } from "./ToastContext";
+import { API_URL } from "../utilities";
 
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
   const { toast, runToast } = useToastContext();
-  // const getAuthToken = JSON.parse(localStorage.getItem("token")) || null;
   const [auth, setAuth] = useState(
     JSON.parse(localStorage.getItem("token")) || null
   );
+  // const getAuthToken = JSON.parse(localStorage.getItem("token")) || null;
 
   const login = async (text, password, route) => {
     try {
-      const response = await axios.post(
-        "https://clink-player-backend.herokuapp.com/login",
-        { email: text, password: password }
-      );
-      //
+      const response = await axios.post(`${API_URL}login`, {
+        email: text,
+        password: password,
+      });
+
       if (response?.data?.success === true) {
-        // console.log({ response });
         runToast(toast.success, "User Logged In Successfully");
         const authToken = response?.data?.authtoken;
         setAuth(authToken);
         localStorage.setItem("token", JSON.stringify(authToken));
         navigate(route ? route : "/");
       } else {
-        // console.log(response);
         runToast(toast.error, response?.data?.message);
       }
     } catch (err) {
@@ -47,17 +46,16 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (text, email, password) => {
     try {
-      const response = await axios.post(
-        "https://clink-player-backend.herokuapp.com/register",
-        { name: text, email: email, password: password }
-      );
-      //
+      const response = await axios.post(`${API_URL}register`, {
+        name: text,
+        email: email,
+        password: password,
+      });
+
       if (response?.data?.success === true) {
-        // console.log(response);
         runToast(toast.success, response?.data?.message);
         navigate("/login");
       } else {
-        // console.log(response);
         runToast(toast.error, response?.data?.message);
       }
     } catch (err) {

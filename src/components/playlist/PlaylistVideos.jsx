@@ -1,4 +1,3 @@
-import React from "react";
 import { useVideosContext } from "../../context/VideosContext";
 import likedStyle from "../history/history.module.css";
 import { TiDelete } from "react-icons/ti";
@@ -10,8 +9,7 @@ export const PlaylistVideos = ({ name }) => {
     dispatch,
   } = useVideosContext();
   const list = playlist.find((vid) => vid.name === name);
-  // console.log({ name });
-  // console.log({ list });
+
   return (
     <div className={likedStyle.container}>
       <h1
@@ -29,10 +27,11 @@ export const PlaylistVideos = ({ name }) => {
         {list?.videos?.map(({ _id, thumbnail, intro, channel, name }) => (
           <div className={likedStyle.main} key={_id}>
             <Link
-              to={`/watch/${name}`}
+              to={`/watch/${encodeURIComponent(name)}`}
               className={likedStyle.link}
               key={_id}
               onClick={() => {
+                console.log("CLICKED");
                 if (history?.find((vid) => vid._id === _id)) {
                   return dispatch({
                     type: "CHANGE-HISTORY",

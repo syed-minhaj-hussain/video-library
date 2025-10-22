@@ -1,7 +1,5 @@
-import React from "react";
 import homeStyle from "./home.module.css";
 import { GoVerified } from "react-icons/go";
-import { ImSpinner } from "react-icons/im";
 import { useVideosContext } from "../../context/VideosContext";
 import { Link } from "react-router-dom";
 import { Spinner } from "./Spinner";
@@ -11,6 +9,8 @@ export const Home = () => {
     state: { videos, history },
     dispatch,
   } = useVideosContext();
+
+  console.log({ videos, history });
 
   return (
     <div className={homeStyle.container}>
@@ -29,7 +29,7 @@ export const Home = () => {
           }) => (
             <Link
               key={_id}
-              to={`/watch/${name}`}
+              to={`/watch/${encodeURIComponent(name)}`}
               className={homeStyle.link}
               onClick={() => {
                 if (history?.find((vid) => vid._id === _id)) {
@@ -69,7 +69,7 @@ export const Home = () => {
                           style={{ position: "absolute", top: "0.12rem" }}
                         />
                       )}
-                    </p>{" "}
+                    </p>
                   </div>
                 </div>
               </div>
