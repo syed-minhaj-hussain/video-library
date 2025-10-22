@@ -27,7 +27,7 @@ export const LikedVideos = () => {
         if (response?.data?.success === true) {
           dispatch({
             type: "UPLOAD-LIKED-VIDEOS",
-            payload: response?.data?.likedVideo,
+            payload: response?.data?.likedVideos,
           });
         }
       } catch (err) {
@@ -55,7 +55,7 @@ export const LikedVideos = () => {
 
   useEffect(() => {
     fetchLikedVideos();
-  }, []);
+  }, [auth]);
   return (
     <div className={likedStyle.container}>
       <h1 className={likedStyle.title}>
