@@ -9,11 +9,21 @@ export const Register = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const navigate = useNavigate();
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    register(text, email, password);
+    setEmail("");
+    setText("");
+    setPassword("");
+  };
+
   useEffect(() => {
     if (auth) {
       navigate("/");
     }
   }, []);
+
   return (
     <>
       <div className={regStyle.container}>
@@ -23,15 +33,7 @@ export const Register = () => {
               Enter Your Username & Password{" "}
             </h3>
 
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                register(text, email, password);
-                setEmail("");
-                setText("");
-                setPassword("");
-              }}
-            >
+            <form onSubmit={handleSubmit}>
               <div className={regStyle.inputs}>
                 <label htmlFor="name">Username :</label>
                 <input

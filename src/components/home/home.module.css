@@ -76,7 +76,7 @@
 }
 .link {
   text-decoration: none;
-  border: 0.1rem solid rgb(24, 24, 24);
+  /* border: 0.1rem solid rgb(24, 24, 24); */
 }
 .link:hover {
   border: 0.1rem solid #333;

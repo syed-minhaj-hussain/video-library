@@ -1,4 +1,3 @@
-import React from "react";
 import { useVideosContext } from "../../context/VideosContext";
 import nameStyle from "./playlist.module.css";
 

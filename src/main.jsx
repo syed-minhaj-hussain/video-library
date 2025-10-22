@@ -1,12 +1,12 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import App from "./App";
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { VideosProvider } from "./context/VideosContext";
 import { ToastProvider } from "./context/ToastContext";
 
-ReactDOM.render(
+createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <Router>
       <ToastProvider>
@@ -17,6 +17,5 @@ ReactDOM.render(
         </AuthProvider>
       </ToastProvider>
     </Router>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </React.StrictMode>
 );

@@ -1,10 +1,8 @@
-import React from "react";
 import { useVideosContext } from "../../context/VideosContext";
 import { useToastContext } from "../../context/ToastContext";
 import historyStyle from "./history.module.css";
 import { TiDelete } from "react-icons/ti";
 import { Link } from "react-router-dom";
-import { Spinner } from "../home/Spinner";
 
 export const History = () => {
   const {
@@ -12,16 +10,19 @@ export const History = () => {
     dispatch,
   } = useVideosContext();
   const { toast, runToast } = useToastContext();
-
+  console.log({ history });
   return (
     <div className={historyStyle.container}>
-      {history?.length < 1 && <Spinner />}
-      <h1 className={historyStyle.title}>Your Watch History!</h1>
+      <h1 className={historyStyle.title}>
+        {history?.length >= 1
+          ? "Your Watch History!"
+          : "Your History is Empty!"}
+      </h1>
       <div className={historyStyle.grid}>
         {history?.map(({ _id, name, thumbnail, intro, channel }) => (
           <div className={historyStyle.main} key={_id}>
             <Link
-              to={`/watch/${name}`}
+              to={`/watch/${encodeURIComponent(name)}`}
               className={historyStyle.link}
               onClick={() => {
                 if (history?.find((vid) => vid.name === name)) {

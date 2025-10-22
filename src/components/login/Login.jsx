@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import logStyle from "./login.module.css";
+import { TEST_USER } from "../../utilities";
 
 export const Login = () => {
   const { isUserLoggedIn, login } = useAuthContext();
@@ -18,6 +19,13 @@ export const Login = () => {
     }
   }, []);
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    login(text, password, state?.from);
+    setText("");
+    setPassword("");
+  };
+
   return (
     <>
       <div className={logStyle.container}>
@@ -26,14 +34,7 @@ export const Login = () => {
             <h3 style={{ marginBottom: "1rem" }}>
               Enter Your Username & Password{" "}
             </h3>
-            <form
-              onSubmit={(e) => {
-                e.preventDefault();
-                login(text, password, state?.from);
-                setText("");
-                setPassword("");
-              }}
-            >
+            <form onSubmit={handleSubmit}>
               <div className={logStyle.inputs}>
                 <label htmlFor="name">Username :</label>
                 <input
@@ -66,7 +67,7 @@ export const Login = () => {
                 padding: "0.5rem 0.5rem",
               }}
               onClick={() => {
-                login("SyedMinhaj@gmain.com", "SyedMinhaj", state?.from);
+                login(TEST_USER.email, TEST_USER.password, state?.from);
               }}
             >
               Login As Guest

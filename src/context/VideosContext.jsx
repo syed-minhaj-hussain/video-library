@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
-import { reducerFunc } from "../utilities";
+import { API_URL, reducerFunc } from "../utilities";
 import axios from "axios";
 import { useAuthContext } from "./AuthContext";
 import { useToastContext } from "./ToastContext";
@@ -15,41 +15,44 @@ export const VideosProvider = ({ children }) => {
   });
   const { auth } = useAuthContext();
   const { toast } = useToastContext();
+
   useEffect(
     () => localStorage.setItem("myPlaylist", JSON.stringify(state.playlist)),
     [state.playlist]
   );
-  // useEffect(() => {
-  //   localStorage.setItem("history", JSON.stringify(state.history));
-  // }, [state.history]);
+
+  useEffect(() => {
+    localStorage.setItem("history", JSON.stringify(state.history));
+  }, [state.history]);
+
   useEffect(() => {
     if (auth) {
       (async function () {
+        console.log("HISTORT_POST", { state });
         try {
           const response = await axios.post(
-            "https://clink-player-backend.herokuapp.com/history",
+            `${API_URL}history`,
             state?.history,
             { headers: { authorization: auth } }
           );
-          // console.log(response?.data?.savedHistory);
         } catch (err) {
           console.log({ err });
         }
       })();
     }
   }, [state?.history]);
+
   useEffect(() => {
     if (auth) {
       (async function () {
         try {
           const response = await axios.post(
-            "https://clink-player-backend.herokuapp.com/playlist",
+            `${API_URL}playlist`,
             state?.playlist,
             { headers: { authorization: auth } }
           );
-          // console.log(response?.data?.savedPlaylist);
           if (response) {
-            // console.log({ response });
+            console.log({ response });
           }
         } catch (err) {
           console.log({ err });

@@ -12,6 +12,7 @@ export const reducerFunc = (state, action) => {
       return { ...state, playlist: action.payload };
 
     case "HISTORY":
+      console.log({ action });
       return { ...state, history: [action.payload, ...state.history] };
 
     case "CHANGE-HISTORY":
@@ -105,4 +106,11 @@ export const reducerFunc = (state, action) => {
     default:
       return state;
   }
+};
+
+export const API_URL = import.meta.env.VITE_API_URL;
+
+export const TEST_USER = {
+  email: "test@vintage.com",
+  password: "Test@@123",
 };
